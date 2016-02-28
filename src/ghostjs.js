@@ -31,7 +31,7 @@ class Ghost {
     })
   }
 
-  async open (url) {
+  async open (url, driverOpts = {}) {
     // If we already have a page object, just navigate it.
     if (this.page) {
       return new Promise(resolve => {
@@ -44,7 +44,7 @@ class Ghost {
 
   	return new Promise(resolve => {
       let testRunner = require(argv['ghost-runner'] || 'phantomjs-prebuilt')
-      let driverOpts = { path: testRunner.path }
+      driverOpts.path = testRunner.path
       driver.create(driverOpts, (err, browser) => {
         this.browser = browser
         browser.createPage((err, page) => {
