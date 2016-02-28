@@ -1,6 +1,6 @@
 {
   "name": "ghostjs",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "Modern web integration test runner",
   "main": "src/ghostjs.js",
   "author": "Kevin Grandon <kevingrandon@yahoo.com>",
@@ -39,7 +39,8 @@
     "slimer"
   ],
   "scripts": {
-    "test": "npm run test:phantom && npm run test:slimerjs",
+    "build": "npm remove ghostjs && npm i",
+    "test": "npm run build && npm run test:phantom && npm run test:slimerjs",
     "test:phantom": "bin/ghostjs examples/*.js",
     "test:slimerjs": "bin/ghostjs --ghost-runner slimerjs examples/*.js"
   }
