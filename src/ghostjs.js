@@ -32,6 +32,20 @@ class Ghost {
   }
 
   /**
+   * Sets options object that is used in driver creation.
+   */
+  setDriverOpts (opts) {
+    this.driverOpts = this.testRunner.match(/phantom/)
+        ? opts
+        : {}
+    this.driverOpts.path = require(this.testRunner).path
+
+    // The dnode `weak` dependency is failing to install on travis.
+    // Disable this for now until someone needs it.
+    this.driverOpts.dnodeOpts = { weak: false }
+  }
+
+  /**
    * Adds scripts to be injected to for each page load.
    * Should be called before ghost#open.
    */

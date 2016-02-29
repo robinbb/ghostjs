@@ -6,6 +6,7 @@ import localServer from './fixtures/server.js'
 describe('ghost#injectScripts', () => {
 
   before(localServer)
+  after(localServer.stop)
 
   it('we can inject scripts', async () => {
     ghost.injectScripts('./examples/fixtures/client_script.js')
