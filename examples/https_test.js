@@ -11,7 +11,7 @@ describe('HTTPS server', () => {
     ghost.setDriverOpts({})
     let result = await ghost.open(URL)
     assert.equal(result, 'fail')
-    ghost.exit()
+    await ghost.exit()
   })
   if (ghost.testRunner.match(/phantom/)) {
     it('has a title', async () => {
@@ -21,7 +21,7 @@ describe('HTTPS server', () => {
       assert.notEqual(result, 'fail')
       let pageTitle = await ghost.pageTitle()
       assert.ok(pageTitle.match(/Basic/))
-      ghost.exit()
+      await ghost.exit()
     })
   }
 })

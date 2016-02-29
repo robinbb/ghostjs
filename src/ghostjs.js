@@ -95,17 +95,27 @@ class Ghost {
     })
   }
 
-  close () {
-    if (this.page) {
-      this.page.close()
-    }
-    this.page = null
+  async close () {
+    return new Promise(resolve => {
+      if (this.page) {
+        this.page.close(() => {
+          this.page = null
+          resolve()
+        })
+      } else {
+        resolve()
+      }
+    })
   }
 
   async exit () {
-    this.close()
-    this.browser.exit()
-    this.browser = null
+    await this.close()
+    return new Promise(resolve => {
+      this.browser.exit(() => {
+        this.browser = null
+        resolve()
+      })
+    })
   }
 
   goBack () {
